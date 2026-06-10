@@ -107,7 +107,7 @@ Kurallar:
                   type: "image",
                   source: { type: "base64", media_type: mediaType, data: base64Data },
                 },
-                { type: "text", text: "Bu yüzü detaylı oku. Her başlık altında en az 2-3 cümle yaz. Kısa tutma." },
+                { type: "text", text: "Bu yüzü analiz et. Aşağıdaki formatta, her başlık altında 3 cümle olacak şekilde yaz:" },
               ],
             },
           ],
