@@ -95,7 +95,7 @@ export default function Visage() {
 [2-3 cümle]
 
 Kurallar:
-- Gerçek fizyonomi yorumları yap, şiirsel değil
+- Her başlık altında MUTLAKA 2-3 cümle yaz, 1 cümle yetmez
 - "Bu form genellikle X ile ilişkilendirilir" gibi ifadeler kullan
 - Türkçe yaz
 - "sen" ile hitap et, "yüzünüz" deme`,
