@@ -38,14 +38,14 @@ export default function Visage() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
-          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun.
+          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun. MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu 
 
 Kurallar:
 - Yüz yapısı, alın, kaşlar, gözler, burun, çene sırasıyla analiz et
 - Her özellik için 1-2 cümle, toplam 5-7 cümle
 - Gerçek fizyonomi yorumları yap, şiirsel değil
 - "Bu form genellikle X ile ilişkilendirilir" gibi ifadeler kullan
-- Türkçe, akıcı paragraf halinde yaz
+- Türkçe, her özellik için ayrı başlık ve altında 1-2 cümle açıklama yaz
 - "sen" ile hitap et, "yüzünüz" deme`,
           messages: [
             {
