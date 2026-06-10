@@ -1,19 +1,19 @@
 import { useState, useRef } from "react";
 
 const FREE_RESULT_TEXT = `**Yüz Yapısı**
-Oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür.
+Oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür. Yüzün genel oranları dengeli — ne çok uzun ne çok geniş, bu denge genellikle pratik zekayla ilişkilendirilir.
 
 **Alın & Kaşlar**
-Alın orta-geniş — entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Kaşlar doğal, sakin bir enerji izlenimi veriyor.
+Alın orta-geniş, entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Kaşlar doğal ve sakin, aşırı ekspresif değil — bu kontrollü duygusallığa işaret eder. Kaş kemeri belirgin, bu da güçlü odaklanma kapasitesini gösterir.
 
 **Gözler**
-Bakış dikkatli ve sakin, doğrudan ama agresif değil. Düşünceli ve gözlemci bir tip izlenimi veriyor.
+Bakış dikkatli ve sakin, doğrudan ama agresif değil. Göz çevresi gergin değil — bu kişinin genellikle sakin ve hesaplı kararlar aldığına işaret eder. Göz şekli badem'e yakın, bu form klasik fizyonomide gözlemcilik ve sezgiyle ilişkilendirilir.
 
 **Burun & Çene**
-Burun belirgin ve düzgün, yüze hakimiyet katıyor. Çene ince ama kararlı bir izlenim veriyor.
+Burun belirgin ve düzgün, yüze hakimiyet katıyor — bu öz güven ve kararlılıkla ilişkilendirilir. Çene ince ama var, saldırgan değil ama kararlı bir izlenim veriyor. Bu çene yapısı genellikle inatçı değil ama pes etmeyen tiplerde görülür.
 
 **Genel İzlenim**
-Konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil.`;
+Konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil. Duygularını yüzüne yansıtmayan, gözlemci ve analitik bir tip izlenimi veriyor. İlk izlenim soğuk gelebilir ama zamanla açılan, güven inşa eden bir karakter yapısı.`;
 
 const LOCKED_PREVIEW = `Göz çevresi ve bakış açısı, duygusal zeka ve gözlemcilik kapasiteni ele veriyor. Kaş yapın ve alın oranı ise karar alma biçimin hakkında çok şey söylüyor — tam raporda bunları ve tarihsel karakter eşleşmeni göreceksin...`;
 
@@ -77,28 +77,30 @@ export default function Visage() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 2000,
-          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun. MUTLAKA şu formatta yaz:
+          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz ediyorsun.
+
+ÇIKTI FORMATI — TAM OLARAK BU ŞEKİLDE YAZ:
 
 **Yüz Yapısı**
-[2-3 cümle]
+Burada yüz formu, oranlar ve genel yapı hakkında 3 cümle yaz.
 
 **Alın & Kaşlar**
-[2-3 cümle]
+Burada alın genişliği, yüksekliği ve kaş yapısı hakkında 3 cümle yaz.
 
 **Gözler**
-[2-3 cümle]
+Burada göz şekli, bakış açısı ve göz çevresi hakkında 3 cümle yaz.
 
 **Burun & Çene**
-[2-3 cümle]
+Burada burun yapısı ve çene hattı hakkında 3 cümle yaz.
 
 **Genel İzlenim**
-[2-3 cümle]
+Burada kişinin genel karakter profili hakkında 3 cümle yaz.
 
-Kurallar:
-- Her başlık altında MUTLAKA 2-3 cümle yaz, 1 cümle yetmez
-- "Bu form genellikle X ile ilişkilendirilir" gibi ifadeler kullan
+KURALLAR:
+- Her başlık altında MUTLAKA 3 cümle yaz
+- Gerçek fizyonomi yorumları yap
 - Türkçe yaz
-- "sen" ile hitap et, "yüzünüz" deme`,
+- "sen" ile hitap et`,
           messages: [
             {
               role: "user",
@@ -107,7 +109,7 @@ Kurallar:
                   type: "image",
                   source: { type: "base64", media_type: mediaType, data: base64Data },
                 },
-                { type: "text", text: "Bu yüzü analiz et. Aşağıdaki formatta, her başlık altında 3 cümle olacak şekilde yaz:" },
+                { type: "text", text: "Bu yüzü analiz et." },
               ],
             },
           ],
