@@ -8,8 +8,7 @@ export default function Visage() {
   const [stage, setStage] = useState("hero"); // hero | uploading | analyzing | result | paywall
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  
   const fileRef = useRef();
 
   const handleFile = (file) => {
