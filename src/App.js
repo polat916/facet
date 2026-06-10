@@ -5,10 +5,9 @@ const FREE_RESULT_TEXT = `Gözlerin derin ve hesaplı. Odada en çok şeyi sen f
 const LOCKED_PREVIEW = `Çene hattın, baskı altında bile kırılmayan bir irade taşıyor. Çoğu insan seni yanlış okuyor...`;
 
 export default function Visage() {
-  const [stage, setStage] = useState("hero"); // hero | uploading | analyzing | result | paywall
+  const [stage, setStage] = useState("hero");
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState("");
-  
   const fileRef = useRef();
 
   const handleFile = (file) => {
@@ -27,8 +26,6 @@ export default function Visage() {
   };
 
   const analyze = async () => {
-    setLoading(true);
-    setError("");
     setStage("analyzing");
 
     try {
@@ -73,29 +70,23 @@ Kurallar:
       setResult(FREE_RESULT_TEXT);
       setStage("result");
     }
-
-    setLoading(false);
   };
 
   const reset = () => {
     setStage("hero");
     setPreview(null);
     setResult("");
-    setError("");
   };
 
   return (
     <div style={styles.root}>
-      {/* Background grain */}
       <div style={styles.grain} />
 
-      {/* Nav */}
       <nav style={styles.nav}>
         <span style={styles.logo}>VISAGE</span>
         <span style={styles.navTagline}>yüz okuma</span>
       </nav>
 
-      {/* HERO */}
       {stage === "hero" && (
         <div style={styles.center}>
           <div style={styles.heroContent}>
@@ -113,14 +104,12 @@ Kurallar:
             <p style={styles.disclaimer}>Ücretsiz · Fotoğrafın saklanmaz · 10 saniye</p>
           </div>
 
-          {/* Floating words */}
           <div style={styles.floatWord1}>göz</div>
           <div style={styles.floatWord2}>çene</div>
           <div style={styles.floatWord3}>alın</div>
         </div>
       )}
 
-      {/* UPLOAD */}
       {stage === "upload" && (
         <div style={styles.center}>
           <div style={styles.card}>
@@ -153,7 +142,6 @@ Kurallar:
         </div>
       )}
 
-      {/* PREVIEW */}
       {stage === "preview" && (
         <div style={styles.center}>
           <div style={styles.card}>
@@ -170,7 +158,6 @@ Kurallar:
         </div>
       )}
 
-      {/* ANALYZING */}
       {stage === "analyzing" && (
         <div style={styles.center}>
           <div style={styles.analyzingWrap}>
@@ -185,20 +172,16 @@ Kurallar:
         </div>
       )}
 
-      {/* RESULT */}
       {stage === "result" && (
         <div style={styles.center}>
           <div style={styles.resultCard}>
-            {/* Free result */}
             <div style={styles.resultSection}>
               <p style={styles.resultLabel}>OKUMA</p>
               <p style={styles.resultText}>{result}</p>
             </div>
 
-            {/* Divider */}
             <div style={styles.divider} />
 
-            {/* Locked */}
             <div style={styles.lockedSection}>
               <p style={styles.resultLabel}>DEVAMI</p>
               <div style={styles.blurWrap}>
@@ -216,7 +199,6 @@ Kurallar:
         </div>
       )}
 
-      {/* PAYWALL */}
       {stage === "paywall" && (
         <div style={styles.center}>
           <div style={styles.card}>
@@ -244,7 +226,6 @@ Kurallar:
         </div>
       )}
 
-      {/* Footer */}
       <footer style={styles.footer}>
         <span>© 2025 Visage</span>
         <span style={styles.footerDot}>·</span>
@@ -278,10 +259,6 @@ Kurallar:
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        .dot-1 { animation: pulse 1.2s ease-in-out infinite; }
-        .dot-2 { animation: pulse 1.2s ease-in-out 0.4s infinite; }
-        .dot-3 { animation: pulse 1.2s ease-in-out 0.8s infinite; }
       `}</style>
     </div>
   );
