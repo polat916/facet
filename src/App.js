@@ -76,7 +76,7 @@ export default function Visage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
+          max_tokens: 2000,
           system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun. MUTLAKA şu formatta yaz:
 
 **Yüz Yapısı**
@@ -107,7 +107,7 @@ Kurallar:
                   type: "image",
                   source: { type: "base64", media_type: mediaType, data: base64Data },
                 },
-                { type: "text", text: "Bu yüzü oku." },
+                { type: "text", text: "Bu yüzü detaylı oku. Her başlık altında en az 2-3 cümle yaz. Kısa tutma." },
               ],
             },
           ],
