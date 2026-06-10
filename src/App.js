@@ -1,8 +1,47 @@
 import { useState, useRef } from "react";
 
-const FREE_RESULT_TEXT = `Yüz yapısı oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür. Alın orta-geniş — entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Gözler dikkatli ve sakin, bakış doğrudan ama agresif değil. Genel izlenim: konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil.`;
+const FREE_RESULT_TEXT = `**Yüz Yapısı**
+Oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür.
+
+**Alın & Kaşlar**
+Alın orta-geniş — entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Kaşlar doğal, sakin bir enerji izlenimi veriyor.
+
+**Gözler**
+Bakış dikkatli ve sakin, doğrudan ama agresif değil. Düşünceli ve gözlemci bir tip izlenimi veriyor.
+
+**Burun & Çene**
+Burun belirgin ve düzgün, yüze hakimiyet katıyor. Çene ince ama kararlı bir izlenim veriyor.
+
+**Genel İzlenim**
+Konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil.`;
 
 const LOCKED_PREVIEW = `Göz çevresi ve bakış açısı, duygusal zeka ve gözlemcilik kapasiteni ele veriyor. Kaş yapın ve alın oranı ise karar alma biçimin hakkında çok şey söylüyor — tam raporda bunları ve tarihsel karakter eşleşmeni göreceksin...`;
+
+function parseResult(text) {
+  const lines = text.split("\n");
+  const elements = [];
+  let key = 0;
+
+  for (const line of lines) {
+    if (line.startsWith("**") && line.endsWith("**")) {
+      elements.push(
+        <p key={key++} style={styles.resultHeading}>
+          {line.replace(/\*\*/g, "")}
+        </p>
+      );
+    } else if (line.trim()) {
+      elements.push(
+        <p key={key++} style={styles.resultText}>
+          {line}
+        </p>
+      );
+    } else {
+      elements.push(<br key={key++} />);
+    }
+  }
+
+  return elements;
+}
 
 export default function Visage() {
   const [stage, setStage] = useState("hero");
@@ -38,14 +77,27 @@ export default function Visage() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
-          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun. MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu  MUTLAKA şu 
+          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun. MUTLAKA şu formatta yaz:
+
+**Yüz Yapısı**
+[1-2 cümle]
+
+**Alın & Kaşlar**
+[1-2 cümle]
+
+**Gözler**
+[1-2 cümle]
+
+**Burun & Çene**
+[1-2 cümle]
+
+**Genel İzlenim**
+[1-2 cümle]
 
 Kurallar:
-- Yüz yapısı, alın, kaşlar, gözler, burun, çene sırasıyla analiz et
-- Her özellik için 1-2 cümle, toplam 5-7 cümle
 - Gerçek fizyonomi yorumları yap, şiirsel değil
 - "Bu form genellikle X ile ilişkilendirilir" gibi ifadeler kullan
-- Türkçe, her özellik için ayrı başlık ve altında 1-2 cümle açıklama yaz
+- Türkçe yaz
 - "sen" ile hitap et, "yüzünüz" deme`,
           messages: [
             {
@@ -177,7 +229,7 @@ Kurallar:
           <div style={styles.resultCard}>
             <div style={styles.resultSection}>
               <p style={styles.resultLabel}>OKUMA</p>
-              <p style={styles.resultText}>{result}</p>
+              {parseResult(result)}
             </div>
 
             <div style={styles.divider} />
@@ -520,12 +572,23 @@ const styles = {
     marginBottom: "16px",
     opacity: 0.8,
   },
+  resultHeading: {
+    fontFamily: "'Syne', sans-serif",
+    fontSize: "11px",
+    fontWeight: 700,
+    letterSpacing: "0.2em",
+    color: "#c9a96e",
+    textTransform: "uppercase",
+    marginTop: "20px",
+    marginBottom: "6px",
+  },
   resultText: {
     fontFamily: "'Cormorant Garamond', serif",
-    fontSize: "22px",
+    fontSize: "18px",
     fontWeight: 300,
     lineHeight: 1.6,
     color: "#e8e4dc",
+    marginBottom: "4px",
   },
   divider: {
     height: "1px",
