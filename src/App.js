@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 
-const FREE_RESULT_TEXT = Yüz yapısı oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür. Alın orta-geniş — entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Gözler dikkatli ve sakin, bakış doğrudan ama agresif değil. Genel izlenim: konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil.
+const FREE_RESULT_TEXT = `Yüz yapısı oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür. Alın orta-geniş — entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Gözler dikkatli ve sakin, bakış doğrudan ama agresif değil. Genel izlenim: konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil.`;
 
-const LOCKED_PREVIEW = Göz çevresi ve bakış açısı, duygusal zeka ve gözlemcilik kapasiteni ele veriyor. Kaş yapın ve alın oranı ise karar alma biçimin hakkında çok şey söylüyor — tam raporda bunları ve tarihsel karakter eşleşmeni göreceksin...
+const LOCKED_PREVIEW = `Göz çevresi ve bakış açısı, duygusal zeka ve gözlemcilik kapasiteni ele veriyor. Kaş yapın ve alın oranı ise karar alma biçimin hakkında çok şey söylüyor — tam raporda bunları ve tarihsel karakter eşleşmeni göreceksin...`;
 
 export default function Visage() {
   const [stage, setStage] = useState("hero");
@@ -38,15 +38,15 @@ export default function Visage() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
-          system: Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun.
-          
+          system: `Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun.
+
 Kurallar:
 - Yüz yapısı, alın, kaşlar, gözler, burun, çene sırasıyla analiz et
 - Her özellik için 1-2 cümle, toplam 5-7 cümle
 - Gerçek fizyonomi yorumları yap, şiirsel değil
 - "Bu form genellikle X ile ilişkilendirilir" gibi ifadeler kullan
 - Türkçe, akıcı paragraf halinde yaz
-- "sen" ile hitap et, "yüzünüz" deme
+- "sen" ile hitap et, "yüzünüz" deme`,
           messages: [
             {
               role: "user",
@@ -244,10 +244,6 @@ Kurallar:
         @keyframes pulse {
           0%, 100% { opacity: 0.2; }
           50% { opacity: 1; }
-        }
-        @keyframes scan {
-          0% { top: 0%; }
-          100% { top: 100%; }
         }
         @keyframes float1 {
           0%, 100% { transform: translateY(0px); }
