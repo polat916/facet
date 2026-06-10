@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 
-const FREE_RESULT_TEXT = `Gözlerin derin ve hesaplı. Odada en çok şeyi sen fark ediyorsun — ama bunu nadiren gösteriyorsun.`;
+const FREE_RESULT_TEXT = Yüz yapısı oval'e yakın, çene hattı belirgin ama sert değil. Bu form klasik fizyonomide analitik ve gözlemci tiplerde sıkça görülür. Alın orta-geniş — entelektüel merak ve içe dönük düşünme eğilimiyle ilişkilendirilir. Gözler dikkatli ve sakin, bakış doğrudan ama agresif değil. Genel izlenim: konuşmadan önce düşünen, mesafeli görünen ama derinliği olan bir profil.
 
-const LOCKED_PREVIEW = `Çene hattın, baskı altında bile kırılmayan bir irade taşıyor. Çoğu insan seni yanlış okuyor...`;
+const LOCKED_PREVIEW = Göz çevresi ve bakış açısı, duygusal zeka ve gözlemcilik kapasiteni ele veriyor. Kaş yapın ve alın oranı ise karar alma biçimin hakkında çok şey söylüyor — tam raporda bunları ve tarihsel karakter eşleşmeni göreceksin...
 
 export default function Visage() {
   const [stage, setStage] = useState("hero");
@@ -38,15 +38,15 @@ export default function Visage() {
         body: JSON.stringify({
           model: "claude-sonnet-4-20250514",
           max_tokens: 1000,
-          system: `Sen bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip 1-2 cümleyle KISA, VURUCU, ŞOK EDİCİ bir gözlem yapıyorsun. 
+          system: Sen deneyimli bir fizyonomi uzmanısın. Kullanıcının yüz fotoğrafını analiz edip gerçek, somut gözlemler yapıyorsun.
           
 Kurallar:
-- Sadece yüz hatlarına dayanarak konuş (göz şekli, alın, çene, burun, kaşlar)
-- "Muhtemelen" veya "sanki" kullanma — kesin ve cesur konuş
-- Kişinin farkında olmadığı ama içten doğru hissettireceği bir şey söyle
-- Max 2 cümle, Türkçe
-- Bilimsel değil, şiirsel ve çarpıcı bir dil kullan
-- Asla "yüzünüz" veya "fotoğrafınız" deme, direkt "sen" ile hitap et`,
+- Yüz yapısı, alın, kaşlar, gözler, burun, çene sırasıyla analiz et
+- Her özellik için 1-2 cümle, toplam 5-7 cümle
+- Gerçek fizyonomi yorumları yap, şiirsel değil
+- "Bu form genellikle X ile ilişkilendirilir" gibi ifadeler kullan
+- Türkçe, akıcı paragraf halinde yaz
+- "sen" ile hitap et, "yüzünüz" deme
           messages: [
             {
               role: "user",
